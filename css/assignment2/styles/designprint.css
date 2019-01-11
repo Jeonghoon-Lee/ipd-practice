@@ -1,0 +1,18 @@
+/* 1. Set the margin on the body to 3em. */
+body {
+    margin: 3em;
+}
+/* 2. Set the body, header, aside, footer, paragraphs and all headings
+      to use Times New Roman with a default of serif and a size of 12 points.*/
+* {
+    font-size: 12pt;
+    font-family: 'Times New Roman', serif;
+}
+/* 3. The salebox must not display. */
+#salebox {
+    display: none;
+}
+/* 4. Set all images so that they do not display. */
+img {
+    display: none;
+}

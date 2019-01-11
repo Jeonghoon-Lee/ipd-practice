@@ -1,0 +1,176 @@
+/* import font from google fonts */
+@import url('https://fonts.googleapis.com/css?family=Lato|Spicy+Rice|Mali');
+
+/* box-sizing property allows us to include the padding and border
+   in an element's total width and height.  */
+* {
+    box-sizing: border-box;
+}
+
+/* Set default font 'Lato' */
+body {
+    width: 1024px;      /* fix body width */
+    font-family: 'Lato', sans-serif;
+    line-height: 1.5;
+    /* make page to align center */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* set background image for h1 */
+header h1 {
+    /* remove h1 margin */
+    margin: 0;
+    /* set background image, font, text-align */
+    background: #adff2f url(../images/bg_image.jpg) center padding-box;
+    font: 70px 'Spicy Rice', sans-serif;
+    text-align: center;
+    /* set padding for spacing */
+    padding: 0.3em; 
+}
+
+/* The top_menu container */
+.top_menu {
+    overflow: hidden;
+    text-align: center;
+    background-color: #c5d5cb;
+}
+
+/* top_menu links */
+.top_menu a {
+    /* inline-block allows to set a width and height on the element */
+    display: inline-block;
+    color: #000;
+    /* top&bottom padding, left&right padding short-hand*/
+    padding: 14px 16px;
+    text-decoration: none; 
+    /* change font */
+    font: bold 18px 'Mali', 'Lato', sans-serif
+}
+
+/* Links - change color and decoration on hover */
+.top_menu a:hover {
+    color: #008000;
+    text-decoration: underline;
+}
+
+/*********************************************/
+/*  main contents area layout                */
+.main {
+    background-color: #e9ece5;
+}
+
+/* Create two columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+}
+
+/* main contents' column */
+.column.contents {
+    width: 70%;
+}
+
+/* right column for contact info */
+.column.side {
+    width: 30%;
+    margin-top: 2px;
+    background-color: #dbe9d8;
+}
+
+/* Clear floats after the columns */
+.main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+footer {
+    background: #adff2f url(../images/bg_image.jpg) left bottom padding-box;
+    text-align: center;
+    font-weight: bold;
+    padding: 30px;
+}
+/*****************************************/
+/* other HTML element settings for contents */
+h2 {
+    color: #7d4627;
+    font-weight: bold;
+    font-family: 'Mali', 'Lato', sans-serif
+}
+h3 {
+    color: #173e43;
+}
+p {
+    text-align: justify;
+    margin: 10px 10px;
+}
+hr {
+    margin-top: 30px;
+}
+li > span, .highlight {
+    color: #6534ff;
+    font-weight: bold;
+}
+/* first sibling */
+#about_us p + p {
+    color: #6534ff;
+    font-weight: bold;
+}
+#education div {
+    text-align: center;
+}
+#education img {
+    width: 45%;
+    padding: 2px;
+}
+/* open hours */
+.open_hours div strong {
+    display: inline-block;
+    text-align: right;
+    width: 50%;
+}
+.open_hours div span {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    width: 50%;
+    color: #5e0231;
+}
+/* for contact */
+#contact {
+    margin-top: 50px;
+}
+#contact > div {
+    margin: auto;
+    border: 1px solid green;
+    padding: 5px;
+}
+#contact img {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+#contact ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+#contact ul ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    display:inline-block;
+}
+article.open_hours div {
+    height: 3em;
+    line-height: 3em;
+    border: 1px solid #e9ece5;
+    background-color: #c0dfd9;
+}
+iframe {
+    border: 0;
+    width: 100%;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>CANNON SHOT</h1>
+    </header>
+    <div class="bg_img">
+        <!-- game option -->
+        <input type="checkbox" id="game1_check" class="game_start">
+        <input type="checkbox" id="game2_check" class="game_start">
+        <input type="checkbox" id="game3_check" class="game_start">
+
+        <input type="radio" id="angle1_check" name="gun_angle" value="1">
+        <input type="radio" id="angle2_check" name="gun_angle" value="2">
+        <input type="radio" id="angle3_check" name="gun_angle" value="3">
+
+        <input type="radio" id="power1_check" name="power" value="1">
+        <input type="radio" id="power2_check" name="power" value="2">
+        <input type="radio" id="power3_check" name="power" value="3">
+        <input type="radio" id="power4_check" name="power" value="4"> 
+
+        <div id="start">
+            <h2>Select game option</h2>
+            <div class="game_option">
+                <label for="game1_check">
+                    <img src="images/cannon-96.png" alt="cannon">
+                </label>
+                <span>Game1</span>
+            </div>
+            <div class="game_option">
+                <label for="game2_check">
+                    <img src="images/cannon-96.png" alt="cannon">
+                </label>
+                <span>Game2</span>
+            </div>
+            <div class="game_option">
+                <label for="game3_check">
+                    <img src="images/cannon-96.png" alt="cannon">
+                </label>
+                <span>Game3</span>
+            </div>
+        </div>
+
+        <!-- sun images -->
+        <div id="sun"><img src="images/sun-96.png" alt="sun"></div>
+        <!-- cloud and mountain drawing-->
+        <div id="cloud">
+            <div class="cloud1">
+                <div class="cloud"></div>
+            </div>
+            <div class="cloud2">
+                <div class="cloud"></div>
+            </div>
+        </div>
+        <div class="mountain"></div>
+        <div class="mountain2"></div>
+        
+        <!-- for cannon & gun_area -->
+        <div class="cannon">
+            <div class="gun_barrel"></div>
+            <img src="images/cannon-96.png" alt="cannon">
+        </div>
+        <div class="gun_area">
+            <label for="angle1_check" class="angle1_1"></label>
+            <label for="angle1_check" class="angle1_2"></label>
+            <label for="angle2_check" class="angle2_1"></label>
+            <label for="angle2_check" class="angle2_2"></label>
+            <label for="angle3_check" class="angle3_1"></label>
+            <label for="angle3_check" class="angle3_2"></label>
+        </div>
+        <div class="tank"><img src="images/tank-96.png" alt="tank"></div>
+        <!-- for power guage -->
+        <div class="power_gauge"></div>
+        <div class="power_area">
+            <label for="power1_check" class="power"></label>
+            <label for="power2_check" class="power"></label>
+            <label for="power3_check" class="power"></label>
+            <label for="power4_check" class="power"></label>
+        </div>
+        <!-- missile shape          -->
+        <div id="missile"></div>
+        <!-- explosion image        -->
+        <img src="images/bang-96.png" id="hit" alt="bang">
+        <!-- win message window     -->
+        <div id="win_msg" class="msg_window">
+            <p><a href="index.html" title="Try again!!!"><img src="images/reset-96.png" alt="again"></a><br/>Hit the TARGET!!!</p>
+        </div>
+        <!-- fail message windows   -->
+        <div id="fail_msg" class="msg_window">
+            <p><a href="index.html" title="Try again!!!"><img src="images/reset-96.png" alt="agian"></a><br/>Fail to hit the TARGET!!!</p>
+        </div>
+    </div>
+    <footer>
+        <small>&copy;&nbsp;Made by Jeonghoon and Mohammadreza<br/>All icons from <a href="https://icons8.com/" target="_blank">icons8.com</a></small>
+    </footer>
+</body>
+</html>

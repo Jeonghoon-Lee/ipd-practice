@@ -1,0 +1,170 @@
+/* 1. Place a comment containing your name, student #, and assignment 2. */
+/* 
+    Assignment 2 - made by Lee, Jeonghoon(1896357)   
+*/
+
+/* 2. reset the browser default for margins and padding
+      in the body to 0 */
+body {
+    margin: 0;
+    padding: 0;
+}
+/* 3. Set the width for “section” to 775pixels, add a 100pixel left margin.
+   4. Use the font choices “lucida sans unicode”, helvetica, 
+      and a default sans-serif font for the section text. 
+   5. Set the background colour of the section using the first 4 digits 
+      of your student code followed by ee, as the hex code.   
+      Set the text for the section to navy with a size of 11 points.    */
+section {
+    width: 775px;
+    margin-left: 100px;
+    font-family: 'lucida sans unicode', helvetica, sans-serif;
+    background-color: #1896ee;
+    /*  this makes the background color appear */
+    overflow: auto;
+    font-size: 11pt;
+    color: navy;
+}
+/* 6. For the header,
+    - Set the width to 765 pixels, a 100 pixel height, 
+      no top margin but a 10 pixel bottom margin.
+    - Set the text to bold and 2em.
+    - Add a background image to this header using the file, keys.jpg,
+      and have the image repeat horizontally across the header.
+    - Set the background colour to white
+    - Add a thick solid navy border.
+    - For paragraphs in the header, set a 0 top margin and center the text. */
+header {
+    width: 765px;
+    height: 100px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    background: white url(../images/keys.jpg) repeat-x;
+    border: thick solid navy;
+}
+header p {
+    margin-top: 0;
+    text-align: center;
+}
+/* 7. For the aside,
+    - have a thick red inset border, 
+      a padding of .5 em all around but 1em padding on the left.
+    - Set the text to be bold and white with a black background
+    - This aside will float left and does not show any overflow.
+    - there will be a background image named curtains.jpg 
+      that is not repeated. */
+aside {
+    border: thick inset red;
+    padding: 0.5em 0.5em 0.5em 1em;
+    background: black url(../images/curtains.jpg) no-repeat;
+    font-weight: bold;
+    color: white;
+    float: left;
+    overflow: hidden;
+}
+/* 8. For the h3 in the aside, 
+    - set a width of 250 pixels, 
+      have it centered with white text on a navy background.
+    - Include .2 em padding top and bottom 
+      along with 1em padding on the left and right. */
+aside h3 {
+    width: 250px;
+    text-align: center;
+    color: white;
+    background-color: navy;
+    padding: 0.2em 1em;
+}
+/* 9. For only the first paragraph after an h3 in the aside, center the text.*/
+aside h3 + p {
+    text-align: center;
+}
+/* 10. For the salebox,
+    - Place it in an absolute position of top 2px and left 105px.
+    - Give it a height of 100 pixels and a width of 140 pixels.
+    - Use auto for overflow 
+    - Set the salebox to show on top of any other content in the header. */
+#salebox {
+    position: absolute;
+    top: 2px;
+    left: 105px;
+    height: 100px;
+    width: 140px;
+    overflow: auto;
+    z-index: 100;
+}
+/* 11. For paragraphs in the salebox,
+    - The text is to be orange with a size of 14 points and bold.
+    - Set the margin to 5 pixels all around.    */
+#salebox p {
+    color: orange;
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 5px;
+}
+/* 12. For the article,
+    - set the width to 420 pixels, float it on the right, 
+    - and add a bottom margin of 80 pixels.     */
+article {
+    width: 420px;
+    float: right;
+    margin-bottom: 80px;
+}
+/* 13. For h2 headers in article,
+    - Set them centered, with white text on a navy background.
+    - Use Arial black with a default of sans-serif font.
+    - Set the height to 60 pixels, the padding to .3 em, and no top margin.
+*/
+article h2 {
+    text-align: center;
+    color: white;
+    background-color: navy;
+    font-family: 'Arial black', sans-serif;
+    height: 60px;
+    padding: 0.3em;
+    margin-top: 0;
+}
+/* 14. For h3 headers in article,
+    - use white text, centered, but a red background
+    - and a .5 em padding. Also, set margins to 0.  */
+article h3 {
+    color: white;
+    text-align: center;
+    background-color: red;
+    padding: 0.5em;
+    margin: 0;
+}
+/* 15. Fully justify paragraphs in the article with 1em padding on the right.*/
+article p {
+    text-align: justify;
+    padding-right: 1em;
+}
+/* 16. The footer 
+    - have with a height of 50 pixels and fixed to the bottom of the webpage.
+    - The text will be black on a white background.
+    - Set the text to display in all uppercase with a fixed spacing of .1 em 
+      between letters and .2 em between the words.
+    - Add a thin navy inset border.
+    - Set the width of the footer to 100%,
+    - Set the left margin to negative 100 pixels and the top margin to .5em.
+    - Padding is also .5em all around, 
+      except the padding on the left is 100 pixels.
+*/
+footer {
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    /* Don't need to set left because its position starts 100px from left */
+    /* left: 100px;     */
+    color: black;
+    background-color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    word-spacing: 0.2em;
+    border: thin inset navy;
+    width: 100%;
+    margin-left: -100px;
+    margin-top: 0.5em;
+    padding: 0.5em 0.5em 0.5em 100px;
+}
