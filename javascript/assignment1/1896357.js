@@ -130,9 +130,9 @@ function compareNameByDescending(student1, student2) {
  * @param {boolean} ascendingOrder 
  */
 function printSortedList(ascendingOrder) {
-    let sortedArray = [];
+    let sortedArray = students.slice();
     
-    sortedArray = (ascendingOrder ? students.sort(compareNameByAscending) : students.sort(compareNameByDescending));
+    (ascendingOrder ? sortedArray.sort(compareNameByAscending) : sortedArray.sort(compareNameByDescending));
 
     // print sorted student list
     console.log('\n------- sorted student list -------\n')
