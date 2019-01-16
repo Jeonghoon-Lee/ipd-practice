@@ -332,10 +332,12 @@ function removeStudent() {
 function displayAll() {
     const result = document.querySelector('#result');
     const studList = document.createElement('ol');
+    studList.classList.add('list-group', 'w-50', 'p-3');
 
     students.forEach(function(student) {
         const item = document.createElement('li');
         item.innerHTML = student.getFullName();
+        item.classList.add('list-group-item');
         studList.appendChild(item);
     });
     result.appendChild(studList);
