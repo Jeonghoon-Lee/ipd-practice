@@ -1,0 +1,47 @@
+<!--
+    IPD-16 420-PX4-AB JAVASCRIPT Project
+    Author: Jeonghoon Lee
+    Date: Jan. 17, 2019
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="justify-content-md-center">
+            <div>
+                <h1>Project 1</h1>
+                <p>Jeonghoon Lee(1896357)</p>`
+            </div>
+            <div class="login-container border border-primary p-3">
+                <div class="login-form-container">
+                    <form>
+                        <label for="loginEmail" class="mb-0">Email Address</label>
+                        <input type="email" name="loginEmail" class="w-100">
+                        <label for="passwd" class="mb-0">Password</label>
+                        <input type="password" name="loginPassword" class="w-100">
+                    </form>
+                </div>
+                <button type="button" class="mt-2 mb-2 w-100" id="login-button">Login</button>
+                <div id="error-message"></div>
+                <div id="today-message"></div>
+                <div class="weather-container">
+                    <ul id="weather-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/login.js"></script>
+
+</html>
