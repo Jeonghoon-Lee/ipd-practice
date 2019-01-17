@@ -11,9 +11,14 @@
   */
 function displayErrorMsg(errorMsg) {
     const errorMsgContainer = document.querySelector('#error-message');
-    const errorMsgElement = document.createElement('p');
+    let errorMsgElement = document.querySelector('#error-message p');
+   
+    if (errorMsgElement === null) {   
+        errorMsgElement = document.createElement('p');
+        errorMsgElement.innerHTML = '[ERROR]<br>Please complete the form!<br>';  
+    }
 
-    errorMsgElement.innerHTML = errorMsg;
+    errorMsgElement.innerHTML += errorMsg + '<br>';
     errorMsgContainer.appendChild(errorMsgElement);
 }
 
@@ -30,11 +35,11 @@ function validateEmail() {
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return true;
         } else {
-            displayErrorMsg('Invaild email format');
+            displayErrorMsg('* Invaild email address format!');
             return false;
         }
     } else {
-        displayErrorMsg('Email Address is empty.<br>Please type email address!');
+        displayErrorMsg('* Email Address must be filled in!');
         return false;
     }
 }
@@ -46,10 +51,10 @@ function validateEmail() {
  */
 function validatePassword() {
     const password = document.querySelector('[name="loginPassword"]').value;
-    if (password.length > 6) {
+    if (password.length > 5) {
         return true;
     } else {
-        displayErrorMsg('The password is too short.<br>It must be at least <strong>7</strong> characters.');
+        displayErrorMsg('* The password is too short.<br>It must be at least <strong>6</strong> characters.');
         return false;
     }
 }
@@ -83,7 +88,36 @@ function displayWelcomeMsg() {
  * Start login process.
  */
 function login() {
+    // Get an unique API key from https://developer.accuweather.com/packages
+    const MY_KEY = 'InsertYourKey';
+    const weatherURL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=' + MY_KEY + '&metric=true';
 
+    // Create AJAX request
+    const request = new XMLHttpRequest();
+    request.open('GET', weatherURL);
+    // Callback function for response
+    request.onload = function(e) {
+        const weatherForecast = JSON.parse(request.response);   // parsing response
+
+        // Get list element to display 5 days weather forecasting
+        const weatherlist = document.querySelector('#weather-list');
+        document.querySelector('#weather-msg').innerHTML = 'Weather in Montreal for the next 5 days!';
+        // For each day's forecasting,
+        // Create list and display
+        weatherForecast.DailyForecasts.forEach(function(dailyReport) {
+            const listItem = document.createElement('li');
+            let weatherString = dailyReport.Date + '<br>';
+
+            weatherString += 'Min: ' + dailyReport.Temperature.Minimum.Value + dailyReport.Temperature.Minimum.Unit + ' ';
+            weatherString += 'Max: ' + dailyReport.Temperature.Maximum.Value + dailyReport.Temperature.Maximum.Unit + '<br>';
+            weatherString += 'Day: ' + dailyReport.Day.IconPhrase + ' ';
+            weatherString += 'Night: ' + dailyReport.Night.IconPhrase;
+
+            listItem.innerHTML = weatherString;
+            weatherlist.appendChild(listItem);
+        });
+    }
+    request.send();    
 }
 
 
@@ -95,7 +129,10 @@ document.querySelector('#login-button').onclick = function() {
     // if user want to login
     if (loginStatus === 'Login') {
         clearErrorMsg();
-        if (validateEmail() && validatePassword()) {
+
+        const checkEmail = validateEmail();
+        const checkPassword = validatePassword();
+        if (checkEmail & checkPassword) {
             document.querySelector('#login-button').innerHTML = "Logout";
             document.querySelector('.login-form-container form').style.display = 'none';
             // clear input password field after login
@@ -108,6 +145,13 @@ document.querySelector('#login-button').onclick = function() {
         document.querySelector('.login-form-container').removeChild(document.querySelector('.login-form-container div'));
         document.querySelector('#login-button').innerHTML = "Login";
         document.querySelector('.login-form-container form').style.display = 'block';
+
+        // clear weather information heading and list
+        document.querySelector('#weather-msg').innerHTML = '';
+        const weatherList = document.querySelector('#weather-list');
+        while (weatherList.firstChild != null) {
+            weatherList.removeChild(weatherList.firstChild);
+        }
     }
 }
 
