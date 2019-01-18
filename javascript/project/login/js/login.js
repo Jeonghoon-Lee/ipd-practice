@@ -1,25 +1,24 @@
 /**
  * IPD-16 420-PX4-AB JAVASCRIPT Project
  * Author: Jeonghoon Lee
- * Date: Jan. 17, 2019
+ * Date: Jan. 18, 2019
  */
 
 
- /**
-  * Display login error message.
-  * @param {string} errorMsg error message you want to display
-  */
-function displayErrorMsg(errorMsg) {
-    const errorMsgContainer = document.querySelector('#error-message');
-    let errorMsgElement = document.querySelector('#error-message p');
-   
-    if (errorMsgElement === null) {   
-        errorMsgElement = document.createElement('p');
-        errorMsgElement.innerHTML = '[ERROR]<br>Please complete the form!<br>';  
-    }
+/**
+ * Display login error message.
+ * @param {string} errorMsg error message you want to display
+ */
+function displayErrorMsg(errorMsg) {  
+    document.querySelector('#error-header').innerHTML = 'Please complete the form!';
+    
+    // Insert error message into HTML list
+    const errorMessageItem = document.createElement('li');
+    errorMessageItem.innerHTML = errorMsg;
+    document.querySelector('#error-message').appendChild(errorMessageItem);
 
-    errorMsgElement.innerHTML += errorMsg + '<br>';
-    errorMsgContainer.appendChild(errorMsgElement);
+    // Make error message container invisible
+    document.querySelector('#error-msg-container').style.display = 'block';
 }
 
 /**
@@ -35,11 +34,11 @@ function validateEmail() {
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return true;
         } else {
-            displayErrorMsg('* Invaild email address format!');
+            displayErrorMsg('Invaild email address format!');
             return false;
         }
     } else {
-        displayErrorMsg('* Email Address must be filled in!');
+        displayErrorMsg('Email Address must be filled in!');
         return false;
     }
 }
@@ -54,7 +53,7 @@ function validatePassword() {
     if (password.length > 5) {
         return true;
     } else {
-        displayErrorMsg('* The password is too short.<br>It must be at least <strong>6</strong> characters.');
+        displayErrorMsg('The password is too short. It must be at least 6 characters.');
         return false;
     }
 }
@@ -63,9 +62,15 @@ function validatePassword() {
  * Delete error message if it exists
  */
 function clearErrorMsg() {
-    const errorMsgText = document.querySelector('#error-message p');
-    if (errorMsgText != null)
-        document.querySelector('#error-message').removeChild(errorMsgText);
+    // Make error message container invisible
+    document.querySelector('#error-msg-container').style.display = 'none';
+    document.querySelector('#error-header').value = '';     // Clear error message
+
+    // Remove list items of error message
+    const errorlist = document.querySelector('#error-message');
+    while(errorlist.firstChild != null) {
+        errorlist.removeChild(errorlist.firstChild);
+    }
 }
 
 /**
@@ -76,8 +81,10 @@ function displayWelcomeMsg() {
     const welcomeMsg = document.createElement('p');
     const userName = document.createElement('h3');
 
+    // Make welcome message for login user
     welcomeMsg.innerHTML = 'Welcome to the JavaScript World';
-    userName.innerHTML = 'Jeonghoon Lee';
+    userName.innerHTML = 'Jeonghoon Lee';   // Set login user name
+    userName.classList.add('text-center');
 
     welcomeMsgContainer.appendChild(welcomeMsg);
     welcomeMsgContainer.appendChild(userName);
@@ -96,44 +103,44 @@ function login() {
     const request = new XMLHttpRequest();
     request.open('GET', weatherURL);
     // Callback function for response
-    request.onload = function(e) {
+    request.onload = function (e) {
         const weatherForecast = JSON.parse(request.response);   // parsing response
 
-        // Get list element to display 5 days weather forecasting
-        const weatherlist = document.querySelector('#weather-list');
-        document.querySelector('#weather-msg').innerHTML = 'Weather in Montreal for the next 5 days!';
-        // For each day's forecasting,
-        // Create list and display
-        weatherForecast.DailyForecasts.forEach(function(dailyReport) {
-            const listItem = document.createElement('li');
-            let weatherString = dailyReport.Date + '<br>';
-
-            weatherString += 'Min: ' + dailyReport.Temperature.Minimum.Value + dailyReport.Temperature.Minimum.Unit + ' ';
-            weatherString += 'Max: ' + dailyReport.Temperature.Maximum.Value + dailyReport.Temperature.Maximum.Unit + '<br>';
-            weatherString += 'Day: ' + dailyReport.Day.IconPhrase + ' ';
-            weatherString += 'Night: ' + dailyReport.Night.IconPhrase;
-
-            listItem.innerHTML = weatherString;
-            weatherlist.appendChild(listItem);
+        // Get weather table for display
+        const tableRows = document.querySelectorAll('tbody tr');
+        // Add new data for each days
+        weatherForecast.DailyForecasts.forEach(function (dailyReport, index) {
+            const options = { weekday: 'short' };
+            tableRows[index].querySelector('th').innerHTML = new Date(dailyReport.Date).toLocaleDateString('en-US', options);
+    
+            const tableData = tableRows[index].querySelectorAll('td');
+            // Set actual data from JavaScript object
+            tableData[0].innerHTML = dailyReport.Temperature.Maximum.Value + '&#x2103;<br>' + dailyReport.Temperature.Minimum.Value + '&#x2103;';
+            tableData[1].innerHTML = dailyReport.Day.IconPhrase;
+            tableData[2].innerHTML = dailyReport.Night.IconPhrase
         });
+        // Make weather container visible
+        document.querySelector('.weather-container').style.display = 'block';
     }
-    request.send();    
+    request.send();
 }
 
 
 // login button click event handler
-document.querySelector('#login-button').onclick = function() {
+document.querySelector('#login-button').onclick = function () {
     // get text from login button
     const loginStatus = document.querySelector('#login-button').innerHTML;
 
-    // if user want to login
     if (loginStatus === 'Login') {
+        // Clear error message
         clearErrorMsg();
-
+        // Test input validation
         const checkEmail = validateEmail();
         const checkPassword = validatePassword();
         if (checkEmail & checkPassword) {
+            // Change button text
             document.querySelector('#login-button').innerHTML = "Logout";
+            // Make login input form invisible
             document.querySelector('.login-form-container form').style.display = 'none';
             // clear input password field after login
             document.querySelector('[type="password"]').value = '';
@@ -141,17 +148,13 @@ document.querySelector('#login-button').onclick = function() {
             login();
         }
     } else {    // logout process
-        // remove welcome message container from HTML
+        // Remove welcome message container from HTML
         document.querySelector('.login-form-container').removeChild(document.querySelector('.login-form-container div'));
-        document.querySelector('#login-button').innerHTML = "Login";
+        document.querySelector('#login-button').innerHTML = "Login";    // Change button text
+        // Make login input form visible
         document.querySelector('.login-form-container form').style.display = 'block';
-
-        // clear weather information heading and list
-        document.querySelector('#weather-msg').innerHTML = '';
-        const weatherList = document.querySelector('#weather-list');
-        while (weatherList.firstChild != null) {
-            weatherList.removeChild(weatherList.firstChild);
-        }
+        // Make weather information container invisible
+        document.querySelector('.weather-container').style.display = 'none';
     }
 }
 
@@ -159,12 +162,30 @@ document.querySelector('#login-button').onclick = function() {
 // Load initial status
 //  - today's message, date and time
 const todayMsgContainer = document.querySelector('#today-message');
-const todayMsgElement = document.createElement('p');
-const today = new Date();       // get date
+const today = new Date();
 
-let todayMessage = 'Today\'s message: "Have a good day!"<br>';
+// Date string option setting
+const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
 
-todayMessage += 'Today\'s date: ' + today.toDateString() + '<br>';
-todayMessage += 'Time now: ' + today.toLocaleTimeString('en-US');
-todayMsgElement.innerHTML = todayMessage;
-todayMsgContainer.appendChild(todayMsgElement);
+document.querySelector('#today').innerHTML = today.toLocaleDateString('en-US', options);
+document.querySelector('#current-time').innerHTML = today.toLocaleTimeString('en-US');
+
+// Set interval to display clock.
+window.setInterval(function(){
+    const today = new Date();
+    document.querySelector('#current-time').innerHTML = today.toLocaleTimeString('en-US');
+}, 1000);
+
+// Famous Quotes URL
+const famousQuotesURL = 'https://andruxnet-random-famous-quotes.p.rapidapi.com/?cat=famous&count=1';
+// Create AJAX request
+const quotesRequest = new XMLHttpRequest();
+quotesRequest.open('GET', famousQuotesURL);
+quotesRequest.setRequestHeader('X-RapidAPI-Key', '577a1fcbf6msh8c12c140bf08a60p124934jsn2387f29acd2f');
+// Callback function for response
+quotesRequest.onload = function (e) {
+    const famousQuotes = JSON.parse(quotesRequest.response);   // parsing response
+    document.querySelector('blockquote p').innerHTML = '"' + famousQuotes[0].quote + '"';
+    document.querySelector('blockquote footer').innerHTML = '<strong>' + famousQuotes[0].author + '</strong>';
+};
+quotesRequest.send();

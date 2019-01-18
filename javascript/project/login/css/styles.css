@@ -1,7 +1,26 @@
+body {
+    min-width: 500px;
+}
+
 .login-container {
-    width: 300px;
+    width: 400px;
+}
+
+#error-msg-container {
+    display: none;
+    padding: .75rem 1rem 0rem;
+}
+
+.blockquote {
+    margin-bottom: 0.25rem;
+    padding: 0.25rem;
+    font-size: 1rem;
 }
 
 #error-message {
-    color: red;
+    padding-inline-start: 12px;
+}
+
+.weather-container {
+    display: none;
 }
