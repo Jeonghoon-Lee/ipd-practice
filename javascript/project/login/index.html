@@ -39,8 +39,8 @@
             <!-- weather information display area -->
             <div class="weather-container mt-3">
                 <div id="weather-msg" class="text-center text-primary font-weight-bold">Montreal, QC Weather</div>
-                <!-- display weather information from accuweather-->
-                <table class="table table-sm">
+                <!-- display weather information from accuweather -->
+                <table class="table table-hover table-sm">
                     <tcaption>Next 5 days</tcaption>
                     <thead class="thead-light">
                         <tr>
@@ -51,26 +51,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td><td></td><td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -80,17 +60,13 @@
                 <ul id="error-message"></ul>
             </div>
             <!-- today's random famous quotes from https://rapidapi.com -->
-            <blockquote class="blockquote text-center bg-light">
-                <p class="mb-0 text-info"></p>
-                <footer class="blockquote-footer"></footer>
-            </blockquote>
+            <blockquote class="blockquote text-center bg-light"></blockquote>
             <!-- date and time display -->
-            <div id="today-message" class="text-right">
-                <span id="today" class="mr-2"></span><span id="current-time"></span>
-            </div>
+            <div id="time-container" class="text-right"></div>
         </div>
     </div>
 </body>
+<script src="./js/jquery.js"></script>
 <script src="./js/login.js"></script>
 
 </html>

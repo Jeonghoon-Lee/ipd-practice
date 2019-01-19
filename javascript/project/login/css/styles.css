@@ -11,14 +11,15 @@ body {
     padding: .75rem 1rem 0rem;
 }
 
+#error-message {
+    padding-inline-start: 12px;
+}
+
 .blockquote {
+    display: none;
     margin-bottom: 0.25rem;
     padding: 0.25rem;
     font-size: 1rem;
-}
-
-#error-message {
-    padding-inline-start: 12px;
 }
 
 .weather-container {
