@@ -139,7 +139,7 @@ function displayWeather(weatherForecast) {
  */
 function getWeatherInfo() {
     // Get an unique API key from https://developer.accuweather.com/packages
-    const MY_KEY = 'kBPth39Aqwu6hqfNdRPFngYwdR1LMZXv';
+    const MY_KEY = 'Add Your Key';
     const weatherURL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=' + MY_KEY + '&metric=true';
 
     /**
