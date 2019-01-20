@@ -139,19 +139,35 @@ function displayWeather(weatherForecast) {
  */
 function getWeatherInfo() {
     // Get an unique API key from https://developer.accuweather.com/packages
-    const MY_KEY = 'Add Your Key';
+    const MY_KEY = 'Set your security key';
     const weatherURL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=' + MY_KEY + '&metric=true';
 
     /**
-     * Using jquery
+     * Using fetch
      */
-    $.ajax({
-        url: weatherURL,
-    }).done(function (weatherForecast) {
-        displayWeather(weatherForecast);
-    }).fail(function (jqXHR) {
-        console.error(jqXHR);
-    });
+    fetch(weatherURL)
+        .then(function(response) {
+            if (!response.ok)
+                throw new Error('Http Error, status = ' + response.status);
+            return response.json();
+        })
+        .then(function(weatherForecast) {
+            displayWeather(weatherForecast);
+        })
+        .catch(function(reason) {
+            console.error(reason);
+        })
+
+    /**
+     * Using jQuery
+     */
+    // $.ajax({
+    //     url: weatherURL,
+    // }).done(function (weatherForecast) {
+    //     displayWeather(weatherForecast);
+    // }).fail(function (jqXHR) {
+    //     console.error(jqXHR);
+    // });
 
     /**
      * Using XHR
@@ -247,21 +263,48 @@ function displayFamousQuotes(famousQuotes) {
 const famousQuotesURL = 'https://andruxnet-random-famous-quotes.p.rapidapi.com/?cat=famous&count=1';
 
 /**
- * Using jquery
+ * Using fetch
  */
-$.ajax({
-    url: famousQuotesURL,
+const initSetting = {
+    method: 'GET',
     headers: {
         'X-RapidAPI-Key': '577a1fcbf6msh8c12c140bf08a60p124934jsn2387f29acd2f'
     }
-}).done(function (famousQuotes) {
-    displayFamousQuotes(famousQuotes);
-}).fail(function () {
-    // Display default Quotes
-    displayFamousQuotes([{quote:'If you want to be happy, be.', author:'Leo Tolstoy'}]);
-    // Print error to console
-    console.error('Error! from famousQuote');
-});
+}
+const myRequest = new Request(famousQuotesURL, initSetting);
+
+fetch(myRequest)
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('HTTP error, status = ' + response.status);
+        }
+        return response.json();
+    })
+    .then(function (famousQuotes) {
+        displayFamousQuotes(famousQuotes)
+    })
+    .catch(function (reason) {
+        // Display default Quotes
+        displayFamousQuotes([{ quote: 'If you want to be happy, be.', author: 'Leo Tolstoy' }]);
+        console.log(reason);
+    });
+
+/**
+ * Using jQuery
+ */
+// $.ajax({
+//     url: famousQuotesURL,
+//     headers: {
+//         'X-RapidAPI-Key': '577a1fcbf6msh8c12c140bf08a60p124934jsn2387f29acd2f'
+//     }
+// }).done(function (famousQuotes) {
+//     displayFamousQuotes(famousQuotes);
+// }).fail(function () {
+//     // Display default Quotes
+//     displayFamousQuotes([{quote:'If you want to be happy, be.', author:'Leo Tolstoy'}]);
+//     // Print error to console
+//     console.error('Error! from famousQuote');
+// });
 
 /**
  * Using XHR
