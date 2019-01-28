@@ -1,0 +1,71 @@
+<!--
+    IPD-16 420-PX4-AB JAVASCRIPT Project
+    Author: Jeonghoon Lee
+    Date: Jan. 17, 2019
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+
+<body>
+    <div class="text-center mb-4">
+        <!-- heading -->
+        <div class="text-light bg-dark p-3 mb-2">
+            <h1>IPD-16 JavaScript Project</h1>
+            <p>Jeonghoon Lee(1896357)</p>
+        </div>
+        <!-- main container -->
+        <div class="login-container border border-dark rounded p-3 m-auto text-left">
+            <!-- login form container -->
+            <div class="login-form-container">
+                <form action="/" method="POST" >
+                    <h3>Please sign in</h3>
+                    <label for="loginEmail" class="mb-0">Email Address</label>
+                    <input type="email" name="loginEmail" class="w-100">
+                    <label for="passwd" class="mb-0">Password</label>
+                    <input type="password" name="loginPassword" class="w-100">
+                </form>
+            </div>
+            <button type="submit" class="mt-2 mb-2 w-100" id="login-button">Login</button>
+            <!-- weather information display area -->
+            <div class="weather-container mt-3">
+                <div id="weather-msg" class="text-center text-primary font-weight-bold">Montreal, QC Weather</div>
+                <!-- display weather information from accuweather -->
+                <table class="table table-hover table-sm">
+                    <tcaption>Next 5 days</tcaption>
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Temp.</th>
+                            <th scope="col">Day</th>
+                            <th scope="col">Night</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <!-- error message display -->
+            <div id="error-msg-container" class="alert alert-danger">
+                <strong><span id="error-header"></span></strong>
+                <ul id="error-message"></ul>
+            </div>
+            <!-- today's random famous quotes from https://rapidapi.com -->
+            <blockquote class="blockquote text-center bg-light"></blockquote>
+            <!-- date and time display -->
+            <div id="time-container" class="text-right"></div>
+        </div>
+    </div>
+    <script src="./public/js/login.js"></script>
+</body>
+
+</html>
